@@ -52,7 +52,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void startRound(){
 
-        round += round; //round = round + 1
+        round += 1; //round = round + 1
         msqtos = round * 10;
         time = 60;
         updateScreen();
@@ -89,7 +89,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private void countDownTime(){
 
-        time -= time; //time--;
+        time --; //time--;
         float randomNumber = randomSeedGenerator.nextFloat();
         double probability = msqtos * 1.5 / 60;
 
