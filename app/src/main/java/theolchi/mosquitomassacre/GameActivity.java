@@ -56,8 +56,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         round += 1;
         msqtos = round * 15;
         time = timeLine;
-        updateScreen();
         checkHighRound();
+        updateScreen();
         handler.postDelayed(this, 1000);
 
     }
@@ -74,7 +74,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         if(round >= 5){
 
-            msqtos = round * 20;
+            msqtos = round * 25;
             MAXAGE_MS = 300;
             timeLine = 15;
 
@@ -101,7 +101,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         FrameLayout flHits = findViewById(R.id.bar_hits);
 
         LayoutParams lpTime = flTime.getLayoutParams();
-        lpTime.width = Math.round(scale * timeLine * 300 / timeLine);
+        lpTime.width = Math.round(scale * time * 300 / timeLine);
 
         LayoutParams lpHits = flHits.getLayoutParams();
         lpHits.width = Math.round(scale * 300 * Math.min(catchedMsqtos, msqtos) / msqtos);
