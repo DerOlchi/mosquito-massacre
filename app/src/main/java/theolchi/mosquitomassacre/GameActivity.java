@@ -52,7 +52,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void startRound(){
 
-        round += 1; //round = round + 1
+        round += 1;
         msqtos = round * 10;
         time = 60;
         updateScreen();
@@ -80,16 +80,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         FrameLayout flHits = findViewById(R.id.bar_hits);
 
         LayoutParams lpTime = flTime.getLayoutParams();
-        lpTime.width = Math.round(scale * time * 520 / 60);
+        lpTime.width = Math.round(scale * time * 300 / 60);
 
         LayoutParams lpHits = flHits.getLayoutParams();
-        lpHits.width = Math.round(scale * 520 * Math.min(catchedMsqtos, msqtos) / msqtos);
+        lpHits.width = Math.round(scale * 300 * Math.min(catchedMsqtos, msqtos) / msqtos);
 
     }
 
     private void countDownTime(){
 
-        time --; //time--;
+        time -= 1;
         float randomNumber = randomSeedGenerator.nextFloat();
         double probability = msqtos * 1.5 / 60;
 

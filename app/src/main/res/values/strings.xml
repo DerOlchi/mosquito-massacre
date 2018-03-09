@@ -1,6 +1,8 @@
 <resources>
 
     <string name="app_name">Mosquitomassacre</string>
+    <string name="points">Points</string>
+    <string name="rounds">Rounds</string>
     <string name="start_text">Welcome to the</string>
     <string name="start_button">Let\'s Go!</string>
     <string name="game_over">Game Over!</string>
