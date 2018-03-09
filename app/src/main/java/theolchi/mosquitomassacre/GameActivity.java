@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener, Runnable {
 
-    private static final long MAXAGE_MS = 2000;
+    long MAXAGE_MS = 2000; //public static final long
     public boolean gameRuns;
     private int round;
     private int points;
@@ -56,8 +56,27 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         msqtos = round * 10;
         time = 60;
         updateScreen();
+        checkHighRound();
         handler.postDelayed(this, 1000);
 
+    }
+
+    public void checkHighRound(){
+
+        if(round >= 2){
+
+            msqtos = round * 20;
+            MAXAGE_MS = 1500;
+
+        } else{
+
+            if(round >=5){
+
+                msqtos = round * 30;
+                MAXAGE_MS = 800;
+
+            }
+        }
     }
 
     //deletes a warning
