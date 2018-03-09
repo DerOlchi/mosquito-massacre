@@ -18,8 +18,7 @@ import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener, Runnable {
 
-    long MAXAGE_MS = 1000; //public static final long
-    public int timeLine = 60;
+    public static long MAXAGE_MS = 1500;
     public boolean gameRuns;
     private int round;
     private int points;
@@ -54,31 +53,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void startRound(){
 
         round += 1;
-        msqtos = round * 15;
-        time = timeLine;
-        checkHighRound();
+        msqtos = round * 10;
+        time = 30;
         updateScreen();
         handler.postDelayed(this, 1000);
 
-    }
-
-    public void checkHighRound(){
-
-        if(round >= 2){
-
-            msqtos = round * 20;
-            MAXAGE_MS = 500;
-            timeLine = 30;
-
-        }
-
-        if(round >= 5){
-
-            msqtos = round * 25;
-            MAXAGE_MS = 300;
-            timeLine = 15;
-
-        }
     }
 
     //deletes a warning
@@ -101,7 +80,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         FrameLayout flHits = findViewById(R.id.bar_hits);
 
         LayoutParams lpTime = flTime.getLayoutParams();
-        lpTime.width = Math.round(scale * time * 300 / timeLine);
+        lpTime.width = Math.round(scale * time * 300 / 30);
 
         LayoutParams lpHits = flHits.getLayoutParams();
         lpHits.width = Math.round(scale * 300 * Math.min(catchedMsqtos, msqtos) / msqtos);
@@ -112,7 +91,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         time -= 1;
         float randomNumber = randomSeedGenerator.nextFloat();
-        double probability = msqtos * 1.5 / timeLine;
+        double probability = msqtos * 1.5 / 30;
 
         if(probability > 1) {
 
