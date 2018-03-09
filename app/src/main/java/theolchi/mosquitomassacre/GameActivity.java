@@ -18,7 +18,8 @@ import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener, Runnable {
 
-    long MAXAGE_MS = 2000; //public static final long
+    long MAXAGE_MS = 1000; //public static final long
+    public int timeLine = 60;
     public boolean gameRuns;
     private int round;
     private int points;
@@ -53,8 +54,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void startRound(){
 
         round += 1;
-        msqtos = round * 10;
-        time = 60;
+        msqtos = round * 15;
+        time = timeLine;
         updateScreen();
         checkHighRound();
         handler.postDelayed(this, 1000);
@@ -66,16 +67,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if(round >= 2){
 
             msqtos = round * 20;
-            MAXAGE_MS = 1500;
+            MAXAGE_MS = 500;
+            timeLine = 30;
 
-        } else{
+        }
 
-            if(round >=5){
+        if(round >= 5){
 
-                msqtos = round * 30;
-                MAXAGE_MS = 800;
+            msqtos = round * 20;
+            MAXAGE_MS = 300;
+            timeLine = 15;
 
-            }
         }
     }
 
@@ -99,7 +101,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         FrameLayout flHits = findViewById(R.id.bar_hits);
 
         LayoutParams lpTime = flTime.getLayoutParams();
-        lpTime.width = Math.round(scale * time * 300 / 60);
+        lpTime.width = Math.round(scale * timeLine * 300 / timeLine);
 
         LayoutParams lpHits = flHits.getLayoutParams();
         lpHits.width = Math.round(scale * 300 * Math.min(catchedMsqtos, msqtos) / msqtos);
@@ -110,7 +112,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         time -= 1;
         float randomNumber = randomSeedGenerator.nextFloat();
-        double probability = msqtos * 1.5 / 60;
+        double probability = msqtos * 1.5 / timeLine;
 
         if(probability > 1) {
 
